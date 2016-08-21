@@ -1,4 +1,0 @@
-<instance ref="component.memoryMaps.memoryMap" name_space="ipxact">
-  <doc_directive target="address_block" to_row="address[:offset] dita_descr reset_value[:value][2..-1]"/>
-  <doc_directive target="address_block" to_header="Offset Name 'Reset Value'"/>
-</instance>

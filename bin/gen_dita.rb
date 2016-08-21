@@ -7,4 +7,4 @@ require_relative '../lib/ipxact'
 
 include ConDuxml
 
-save('output.dita', transform(dita_xform_file, ipxact_file, opts))
+save('output.dita', transform(dita_xform_file, ipxact_file))

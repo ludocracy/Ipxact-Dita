@@ -15,7 +15,7 @@ module Ipxact
 
     attr_reader :word_ct
 
-    def reg_fig
+    def reg_fig(*args)
       set_addr!
       table = Element.new('table')
       table[:id] = object_id.to_s+"_regFigure"

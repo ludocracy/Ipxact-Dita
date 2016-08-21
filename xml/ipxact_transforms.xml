@@ -1,0 +1,17 @@
+<transform grammar="Dita.grammar" src_ns="ipxact" source="component/memoryMaps/memoryMap">
+  <dita:topic source="addressBlock">
+    <dita:topic>
+      <dita:table>
+        <dita:row source="register"/>
+      </dita:table>
+    </dita:topic>
+    <dita:topic source="register" arg0="">
+      <ipxact:offset_table/>
+      <sclone source=""/>
+      <ipxact:reg_fig arg0=""/>
+      <dita:table>
+        <dita:row source="field"/>
+      </dita:table>
+    </dita:topic>
+  </dita:topic>
+</transform>
