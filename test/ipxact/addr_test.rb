@@ -2,11 +2,11 @@ require_relative '../../lib/ipxact/addressable'
 require 'test/unit'
 
 class Klass
-  include Addressable
+  include Addr
   def initialize(a,w) @bits, @word = a, w end
 end
 
-class AddressableTest < Test::Unit::TestCase
+class AddrTest < Test::Unit::TestCase
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup

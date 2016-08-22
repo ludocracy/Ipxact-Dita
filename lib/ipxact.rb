@@ -1,3 +1,3 @@
-require_relative 'ipxact/register'
-module Ipxact
-end
+require_relative 'ipxact/dita/reg_fig'
+
+module Ipxact; end
