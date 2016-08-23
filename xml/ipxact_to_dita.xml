@@ -1,24 +1,27 @@
 <transform grammar="Dita.grammar" src_ns="ipxact" source="component/memoryMaps/memoryMap">
   <dita:topic source="addressBlock" arg="name/*">
     <dita:topic arg="'Memory map'">
-      <dita:table arg="'Address offset', 'Register', 'Access'">
-        <!-- @merge applies to source array -->
-        <dita:row source="register" merge="mem_map_row">
-          <addr:to_hex arg0="addressOffset/*" arg1="postfix: true"/>
-          <content arg="description"/>
-          <content arg="access"/>
-        </dita:row>
-      </dita:table>
+      <element arg="'body'">
+        <dita:table arg="'Address offset', 'Register', 'Access'">
+          <dita:row source="register" merge="mem_map_row">
+            <addr:to_hex arg0="addressOffset/*" arg1="postfix: true"/>
+            <content arg="description"/>
+            <content arg="access"/>
+          </dita:row>
+        </dita:table>
+      </element>
     </dita:topic>
     <dita:topic source="register" arg="name/*">
-      <ipxact:offset_table/>
-      <ipxact:reg_fig />
-      <dita:table arg="'Bit range', 'Name'">
-        <dita:row source="field">
-          <ipxact:bit_range/>
-          <content arg="name"/>
-        </dita:row>
-      </dita:table>
+      <element arg="'body'">
+        <ipxact:offset_table/>
+        <ipxact:reg_fig />
+        <dita:table arg="'Bit range', 'Name'">
+          <dita:row source="field">
+            <ipxact:bit_range/>
+            <content arg="name"/>
+          </dita:row>
+        </dita:table>
+      </element>
     </dita:topic>
   </dita:topic>
 </transform>

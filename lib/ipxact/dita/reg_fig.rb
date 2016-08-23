@@ -7,21 +7,22 @@ require_relative 'fig_field'
 module Ipxact
   include Dita
 
+  # counts number of words of figure generated so far, where size of word is defined by REGFIG_MAX_ROWBITS
   @word_ct
 
   attr_reader :word_ct
 
-  # @param src [Element] <register/>
-  # @param opts [Hash] keys include:
-  #
+
+  # @param src [Element] register definition from <ipxact:register/>
+  # @param opts [Hash] no options currently supported TODO add options for hide access, hide reset value, etc.
+  # @return [Element] visual rendering of register and its fields in Dita table form
   def reg_fig(src, opts={})
-    opts[:bitorder]
     table = Element.new('table')
     table[:id] = object_id.to_s+"_regFigure"
     table[:frame] = 'all'
     table[:outputclass] = 'crr.regFigure regtable'
     @word_ct = 0
-    input = nodes.select do |n| n.name.include? 'bit_field' end.reverse
+    input = src.locate(src_ns + ':field')
     tgroup = nil
     until input.empty? do
       field = input.pop
@@ -49,10 +50,6 @@ module Ipxact
   end
 
   def row_relative_index(field)
-    p = field.position
-    s = field.width
-    w = word_ct
-    r = REGFIG_MAX_ROWBITS
     field.position.to_i + field.width.to_i - word_ct*REGFIG_MAX_ROWBITS
   end
 

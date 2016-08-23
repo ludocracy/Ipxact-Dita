@@ -3,11 +3,13 @@ require_relative 'ipxact/dita/reg_fig'
 require_relative 'ipxact/addr'
 
 module Ipxact
-  def offset_table
+  # @param node [Element] for now, just outputs one address from <ipxact:addressOffset/>
+  # @return [Element] table with columns for register name and address offset
+  def offset_table(node)
     'offset_table'
   end
 
-  def reg_fig
-    'reg_fig'
+  def bit_range(node)
+    'bit_range'
   end
 end
