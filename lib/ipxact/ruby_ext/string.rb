@@ -1,3 +1,4 @@
+# Copyright (c) 2016 Freescale Semiconductor Inc.
 PREFIX_HEX = /^('h|0x)[0-9A-Fa-f]+$/
 POSTFIX_HEX = /^[0-9A-Fa-f]+h$/
 PREFIX_BIN = /^['0]b[01]+$/
@@ -9,10 +10,10 @@ class String
   # @return [Fixnum] returns base of number represented by this string e.g. '0x0F' => 16
   def base
     case self
-      when PREFIX_HEX, POSTFIX_HEX, NAKED_HEX
-        16
       when PREFIX_BIN, POSTFIX_BIN
         2
+      when PREFIX_HEX, POSTFIX_HEX, NAKED_HEX
+        16
       when DECIMAL
         10
       else

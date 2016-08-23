@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Copyright (c) 2016 Freescale Semiconductor Inc.
 
 require 'con_duxml'
 require_relative '../lib/ipxact'

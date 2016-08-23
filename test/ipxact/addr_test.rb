@@ -1,21 +1,12 @@
-require_relative '../../lib/ipxact/addressable'
+require_relative '../../lib/ipxact/addr'
 require 'test/unit'
 
-class Klass
-  include Addr
-  def initialize(a,w) @bits, @word = a, w end
-end
-
 class AddrTest < Test::Unit::TestCase
+  include Addr
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
-    @a = Klass.new([1,0,0,0,
-                    1,0,0,1,
-                    1,0,1,0,
-                    1,0,1,1,
-                    1,1,0,0,
-                    1,1,0,1], 32)
+    @a = '0b100010011010101111001101'
   end
 
   attr_reader :a
@@ -28,21 +19,23 @@ class AddrTest < Test::Unit::TestCase
   end
 
   def test_to_hex
-    assert_equal '0x89ABCD', a.to_hex
-    assert_equal '0x0089_ABCD', a.to_hex(:sep, :pad)
-    assert_equal '89ABCDh', a.to_hex(:post)
+    assert_equal '89ABCD', to_hex(a)
+    assert_equal '0089_ABCD', to_hex(a, {sep: true, pad: 8})
+    assert_equal "'h89ABCD", to_hex(a, pre: "'h")
+    assert_equal '89ABCDh', to_hex(a, post: true)
   end
 
   def test_to_bin
-    assert_equal '100010011010101111001101', a.to_bin
-    assert_equal '24b100010011010101111001101', a.to_bin(:pre)
-    assert_equal '0000 0000 1000 1001 1010 1011 1100 1101', a.to_bin(:pad, :sep)
-    assert_equal '100010011010101111001101b', a.to_bin(:post)
+    assert_equal '100010011010101111001101', to_bin(a)
+    assert_equal '0b100010011010101111001101', to_bin(a, pre: true)
+    assert_equal '100010011010101111001101b', to_bin(a, post: true)
+    assert_equal '1000 1001 1010 1011 1100 1101', to_bin(a, {sep: true})
   end
 
   def test_to_dec
-    assert_equal '9022413', a.to_dec
-    assert_equal '9,022,413', a.to_dec(:sep)
-    assert_equal '9022413d', a.to_dec(:post)
+    assert_equal '9022413', to_dec(a)
+    assert_equal '9,022,413', to_dec(a, sep: true)
+    assert_equal '9.022.413', to_dec(a, sep: '.')
+    assert_equal '9022413d', to_dec(a, post: true)
   end
 end

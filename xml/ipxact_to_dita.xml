@@ -4,9 +4,9 @@
       <dita:table arg0="'Address offset', 'Register', 'Access'">
         <!-- @merge applies to source array -->
         <dita:row source="register" merge="mem_map_row">
-          <ipxact:offset base_note="prefix"/>
-          <get source="description/*"/>
-          <get source="access/*"/>
+          <addr:to_hex source="addressOffset" arg0="postfix: true"/>
+          <content source="description/*"/>
+          <content source="access/*"/>
         </dita:row>
       </dita:table>
     </dita:topic>
@@ -16,7 +16,7 @@
       <dita:table arg0="'Bit range', 'Name'">
         <dita:row source="field">
           <ipxact:bit_range/>
-          <get source="name/*"/>
+          <content source="name/*"/>
         </dita:row>
       </dita:table>
     </dita:topic>
