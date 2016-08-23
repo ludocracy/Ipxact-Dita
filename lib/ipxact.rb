@@ -3,8 +3,6 @@ require_relative 'ipxact/dita/reg_fig'
 require_relative 'ipxact/addr'
 
 module Ipxact
-  include Addr
-
   def offset_table
     'offset_table'
   end
