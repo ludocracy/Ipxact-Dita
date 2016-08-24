@@ -6,17 +6,17 @@ require_relative 'fig_field'
 
 module Ipxact
   include Dita
+  include FigField
 
   # counts number of words of figure generated so far, where size of word is defined by REGFIG_MAX_ROWBITS
   @word_ct
 
   attr_reader :word_ct
 
-
-  # @param src [Element] register definition from <ipxact:register/>
   # @param opts [Hash] no options currently supported TODO add options for hide access, hide reset value, etc.
-  # @return [Element] visual rendering of register and its fields in Dita table form
-  def reg_fig(src, opts={})
+  # @return [Element] visual rendering of register and its fields in Dita table form; content from <ipxact:register/> in @source
+  def reg_fig(opts={})
+    src = source # TODO not sure if this is ideal, but works for now
     table = Element.new('table')
     table[:id] = object_id.to_s+"_regFigure"
     table[:frame] = 'all'
@@ -26,7 +26,6 @@ module Ipxact
     tgroup = nil
     until input.empty? do
       field = input.pop
-      field.extend FigField
       index = row_relative_index field
       if tgroup.nil?
         tgroup = gen_tgroup
@@ -37,28 +36,36 @@ module Ipxact
         input << field.split do |bit| bit end
         next
       else
-        entries = field.gen_dita(word_ct)
+        entries = gen_field_entries(field, word_ct)
         tgroup.tbody.nodes[1] << entries.first
         tgroup.tbody.nodes[2] << entries[1] if entries.size > 2
         tgroup.tbody.nodes[3] << entries.last if entries.last.is_a?(Array)
       end
-      if field.position == 0 || index >= REGFIG_MAX_ROWBITS
-        @word_ct += 1 unless field.position == 0
+      if field_pos(field) == 0 || index >= REGFIG_MAX_ROWBITS
+        @word_ct += 1 unless field_pos(field) == 0
       end
     end
     table
   end
 
   def row_relative_index(field)
-    field.position.to_i + field.width.to_i - word_ct*REGFIG_MAX_ROWBITS
+    field_pos(field) + field_width(field) - word_ct*REGFIG_MAX_ROWBITS
   end
 
   def small?
-    size < REGFIG_MAX_ROWBITS
+    reg_size < REGFIG_MAX_ROWBITS
   end
 
   def large?
-    size > 64
+    reg_size > 64
+  end
+
+  def field_pos(field)
+    field.bitOffset.text.to_i
+  end
+
+  def field_width(field)
+    field.bitWidth.text.to_i
   end
 
   def gen_tgroup
@@ -88,8 +95,12 @@ module Ipxact
     end
   end
 
+  def reg_size
+    source.size.text.to_i
+  end
+
   def fig_bit_width
-    REGFIG_MAX_ROWBITS > width ? width : REGFIG_MAX_ROWBITS
+    REGFIG_MAX_ROWBITS > reg_size ? reg_size : REGFIG_MAX_ROWBITS
   end
 
   def num_cols
