@@ -103,6 +103,10 @@ module Ipxact
     REGFIG_MAX_ROWBITS > reg_size ? reg_size : REGFIG_MAX_ROWBITS
   end
 
+  def bit_range
+    "#{(field_pos(source) + field_width(source) - 1).to_s} - #{field_pos(source).to_s}"
+  end
+
   def num_cols
     fig_bit_width+1
   end

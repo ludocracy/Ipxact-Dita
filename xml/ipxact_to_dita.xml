@@ -16,10 +16,10 @@
         <dita:table arg="'Name', 'Address offset'">
           <dita:row>
             <content arg="name"/>
-            <content arg="addressOffset"/>
+            <addr:to_hex arg0="addressOffset/*" arg1="post: true"/>
           </dita:row>
         </dita:table>
-        <ipxact:reg_fig />
+        <ipxact:reg_fig/>
         <dita:table arg="'Bit range', 'Name'">
           <dita:row source="field">
             <ipxact:bit_range/>

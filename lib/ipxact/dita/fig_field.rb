@@ -15,8 +15,8 @@ module Ipxact
       if width == 1
         entry[:colname] = col_start_index.to_s
       else
-        entry[:namest] = col_start_index.to_s
-        entry[:nameend] = col_end_index.to_s
+        entry[:namest] = (col_start_index).to_s
+        entry[:nameend] = (col_end_index+1).to_s
       end
       entry[:valign] = 'middle'
       # entry[:outputclass] = 'rotate' if get_bit_width(name) > fig_bit_width # TODO fix this!!!

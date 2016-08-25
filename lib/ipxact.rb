@@ -8,8 +8,4 @@ module Ipxact
   def offset_table(node)
     table(%w())
   end
-
-  def bit_range(node)
-    'bit_range'
-  end
 end

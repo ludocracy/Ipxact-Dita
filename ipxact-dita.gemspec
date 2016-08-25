@@ -1,7 +1,7 @@
 # coding: utf-8
 # Copyright (c) 2016 Freescale Semiconductor Inc.
 Gem::Specification.new do |spec|
-  spec.name          = "ip-xact"
+  spec.name          = "ipxact-dita"
   spec.version       = "0.1.0"
   spec.summary       = "Ruby interface for IP-XACT semiconductor component model including documentation generation"
   spec.description   = "see README.md"
@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Add any gems that your plugin needs to run within a host application
-  spec.add_runtime_dependency "duxml", "~> 0.8.1"
-  spec.add_runtime_dependency "ruby-dita", "~> 0.2"
+  spec.add_runtime_dependency "duxml", "~> 0.8.6"
+  spec.add_runtime_dependency "ruby-dita", "~> 0.4"
 
   # Add any gems that your plugin needs for its development environment only
 end
