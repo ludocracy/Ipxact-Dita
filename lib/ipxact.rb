@@ -3,13 +3,9 @@ require_relative 'ipxact/dita/reg_fig'
 require_relative 'ipxact/addr'
 
 module Ipxact
-  include Addr
-
-  def offset_table
-    'offset_table'
-  end
-
-  def reg_fig
-    'reg_fig'
+  # @param node [Element] for now, just outputs one address from <ipxact:addressOffset/>
+  # @return [Element] table with columns for register name and address offset
+  def offset_table(node)
+    table(%w())
   end
 end

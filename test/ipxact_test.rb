@@ -23,15 +23,8 @@ class IpxactTest < Test::Unit::TestCase
     # Do nothing
   end
 
-  # test vanilla generation from ip xact
-
-  # test permutations of presentation
-
-  # test permutations of register type
-
-  # devolve to ConDuxml tests and ip-xact::component tests
-
   def test_vanilla_xform
-    save OUTPUT_PATH, transform(XFORM_PATH, SOURCE_PATH)
+    output = transform(XFORM_PATH, SOURCE_PATH)
+    save(OUTPUT_PATH, output)
   end
 end
