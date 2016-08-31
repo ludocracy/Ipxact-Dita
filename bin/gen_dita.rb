@@ -5,6 +5,8 @@ require 'con_duxml'
 require_relative '../lib/ipxact'
 
 include ConDuxml
+include Dita
+include Ipxact
 
 # params: ip-xact file or formatting file, options
 
