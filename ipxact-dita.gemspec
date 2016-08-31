@@ -2,7 +2,7 @@
 # Copyright (c) 2016 Freescale Semiconductor Inc.
 Gem::Specification.new do |spec|
   spec.name          = "ipxact-dita"
-  spec.version       = "0.1.0"
+  spec.version       = "0.1.1"
   spec.summary       = "Ruby interface for IP-XACT semiconductor component model including documentation generation"
   spec.description   = "see README.md"
   spec.authors       = ["Peter Kong"]

@@ -2,6 +2,7 @@
   <dita:topic source="addressBlock" arg="name/*">
     <dita:topic arg="'Memory map'">
       <element arg="'body'">
+        
         <dita:table arg="'Address offset', 'Register', 'Access'">
           <dita:row source="register" merge="mem_map_row">
             <addr:to_hex arg0="addressOffset/*" arg1="post: true"/>
